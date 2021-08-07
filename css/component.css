@@ -1,0 +1,95 @@
+.grid {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 100vw;
+}
+
+.js .grid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.no-js .grid {
+	border-bottom: none;
+}
+
+.js .grid--current {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.grid__column {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex: 1;
+	height: 100%;
+}
+
+/* Loading styles */
+
+.js .grid-pages:not(.grid-pages--loaded)::after,
+.js .grid-pages:not(.grid-pages--loaded)::before {
+	content: '';
+	position: absolute;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	margin: -10px 0 0 -10px;
+	opacity: 0;
+	border: 4px solid #fff;
+	-webkit-animation: moveAround 0.5s ease-in infinite alternate forwards;
+	animation: moveAround 0.5s ease-in infinite alternate forwards;
+}
+
+.js .grid-pages::after {
+	-webkit-transform: translateX(-180%);
+	transform: translateX(-180%);
+}
+
+.js .grid-pages::before {
+	-webkit-transform: translateX(180%);
+	transform: translateX(180%);
+}
+
+@-webkit-keyframes moveAround {
+	to {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveAround {
+	to {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 50em) {
+	.grid {
+		height: 100vh;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+}
